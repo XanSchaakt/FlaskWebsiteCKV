@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+  }
+  .container {
+    margin-top: 20px;
+  }
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .part {
+    width: 120px;
+    height: 120px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .arrow {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+  }
+  #info {
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+  }
+  .button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }

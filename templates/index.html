@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CKV Mix & Match</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Wie dit leest is een beetje gek! Also check dit zelfportret van Floris (hij is de big)</h1>
-    <img src="{{ url_for('static', filename='tekeningen/RVO.jpg') }}" alt="RVO Image">
+  <h1>CKV Mix & Match</h1>
+  <p id="info">Klik hier voor informatie over het project</p>
+  
+  <div class="container">
+    <div class="image-container">
+      <span class="arrow" onclick="changePart('head', -1)">&#9664;</span>
+      <div class="part" id="head">Hoofd</div>
+      <span class="arrow" onclick="changePart('head', 1)">&#9654;</span>
+    </div>
+    <div class="image-container">
+      <span class="arrow" onclick="changePart('body', -1)">&#9664;</span>
+      <div class="part" id="body">Lichaam</div>
+      <span class="arrow" onclick="changePart('body', 1)">&#9654;</span>
+    </div>
+    <div class="image-container">
+      <span class="arrow" onclick="changePart('legs', -1)">&#9664;</span>
+      <div class="part" id="legs">Benen</div>
+      <span class="arrow" onclick="changePart('legs', 1)">&#9654;</span>
+    </div>
+  </div>
+  
+  <button class="button" onclick="randomize()">Random</button>
+  <script src="script.js"></script>
 </body>
 </html>
