@@ -1,17 +1,17 @@
 /* Define the custom font */
 @font-face {
   font-family: 'Boldonse';
-  src: url('static/fonts/Boldonse-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  src: url(../static/fonts/Boldonse-Regular.woff);
+  font-weight: bold;
 }
 
 /* Apply the custom font to the header */
 header {
-  background-color: lightgray;
+  background-color: black;
   text-align: center;
   padding: 20px;
   position: relative;
+  color: white;
   font-family: 'Boldonse', serif; /* Use custom font with fallback */
 }
 
