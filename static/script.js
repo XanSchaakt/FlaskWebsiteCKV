@@ -55,7 +55,7 @@ function changeImage(type, direction) {
   let newIndex = currentIndex + direction;
   
   // Prevent out of bounds
-  const maxIndex = 5;  // Update this to the actual number of images available
+  const maxIndex = 2;  // Update this to the actual number of images available
   const minIndex = 1;
   
   if (newIndex > maxIndex) newIndex = minIndex;
