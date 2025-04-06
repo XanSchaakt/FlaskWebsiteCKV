@@ -6,21 +6,28 @@
 }
 
 /* === HEADER === */
+/* === HEADER === */
 header {
   background-color: black;
   text-align: center;
   padding: 20px;
-  position: relative;
+  position: fixed; /* was: relative */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   color: white;
   font-family: 'Boldonse', serif;
 }
 
 header h1 {
   margin: 0;
+  z-index: 1000;
 }
 
 #info-toggle {
   position: absolute;
+  transform: scaleX(2);
   bottom: -25%;
   left: 50%;
   transform: translateX(-50%);
@@ -38,46 +45,43 @@ header h1 {
   right: 0;
   display: none;
 }
-
-#info-box {
-  bottom: 0;
-  background-color: white;
-  padding: 20px;
-  text-align: center;
-}
-
 #overlay {
   top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
+#info-box {
+  position: absolute;
+  top: 100%; /* start directly below header */
+  left: 0;
+  right: 0;
+  background-color: black;
+  padding: 20px;
+  text-align: center;
+  z-index: 10;
+  display: none;
+}
 
 /* Animation classes */
-#info-box.slide-in { animation: slideIn 0.3s ease-in-out; }
-#info-box.slide-out { animation: slideOut 0.3s ease-in-out; }
-#overlay.fade-in   { animation: fadeIn 0.3s ease-in-out; }
-#overlay.fade-out  { animation: fadeOut 0.3s ease-in-out; }
-
-/* === ANIMATIONS === */
-@keyframes slideIn {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
+#info-box.slide-in {
+  display: block;
+  animation: slideDown 0.3s ease-in-out forwards;
 }
 
-@keyframes slideOut {
-  from { transform: translateY(0); }
-  to   { transform: translateY(100%); }
+#info-box.slide-out {
+  animation: slideUp 0.3s ease-in-out forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* New keyframes for downward motion */
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+@keyframes slideUp {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(-20px); opacity: 0; }
 }
 
 /* === GALLERY === */
@@ -85,61 +89,38 @@ header h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 120px 20px 20px; /* top padding added */
 }
+
 
 .image-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 10px;
+  padding-right: 100px; /* space on the right */
+  position: relative;
 }
 
 .image-container img {
-  max-width: 80%;
+  max-width: 70%;
   max-height: 400px;
 }
 
-/* === DROPDOWN MENU === */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.image-container .description {
+  flex-grow: 1;
+  padding-left: 20px;
+  font-size: 16px;
+  max-width: 300px;
+  color: #333;
 }
 
-.dropbtn {
-  background-color: #ddd;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  font-family: sans-serif;
+.image-container button.prev {
+  margin-left: 10px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  min-width: 160px;
-  padding: 12px;
-  z-index: 20;
-}
-
-.dropdown.show .dropdown-content {
-  display: block;
-}
-
-.dropdown-content label {
-  display: block;
-  padding: 5px 0;
-  font-family: sans-serif;
-}
-
-.dropdown-content button {
-  margin-top: 10px;
-  width: 100%;
-  padding: 6px;
-  background-color: #ccc;
-  border: none;
-  cursor: pointer;
+.image-container button.next {
+  margin-right: 10px;
 }
 
 /* === BUTTON STYLES === */

@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project</title>
-  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="static/styles.css" />
 </head>
 <body>
-  <header>
-    <h1>PROJECT</h1>
-  </header>
+    <header>
+        <h1>CKV PROJECT - [Projectnaam]</h1>
+        <button id="info-toggle">&#9660;</button>
+      
+        <div id="info-box">
+          <p>[Informatietekst]</p>
+        </div>  
+    </header>
+      
+
+  <div id="overlay"></div>
 
   <div class="gallery">
     <div class="image-container" id="head-container">
       <button class="prev" onclick="changeImage('Heads', -1)">&#9664;</button>
-      <img id="heads" src="static/tekeningen/Heads/1.png" alt="Head">
+      <img id="heads" src="static/tekeningen/Heads/1.png" alt="Head" />
       <button class="next" onclick="changeImage('Heads', 1)">&#9654;</button>
+      <div class="description">[Info about this head]</div>
     </div>
+    
     <div class="image-container" id="body-container">
       <button class="prev" onclick="changeImage('Bodys', -1)">&#9664;</button>
-      <img id="bodys" src="static/tekeningen/Bodys/1.png" alt="Body">
+      <img id="bodys" src="static/tekeningen/Bodys/1.png" alt="Body" />
       <button class="next" onclick="changeImage('Bodys', 1)">&#9654;</button>
+      <div class="description">[Info about this body]</div>
     </div>
+    
     <div class="image-container" id="legs-container">
       <button class="prev" onclick="changeImage('Legs', -1)">&#9664;</button>
-      <img id="legs" src="static/tekeningen/Legs/1.png" alt="Legs">
+      <img id="legs" src="static/tekeningen/Legs/1.png" alt="Legs" />
       <button class="next" onclick="changeImage('Legs', 1)">&#9654;</button>
+      <div class="description">[Info about these legs]</div>
     </div>
   </div>
 
