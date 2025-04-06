@@ -1,3 +1,5 @@
+let aantalAfbeeldingen = 2;
+
 document.getElementById('info-toggle').addEventListener('click', function() {
   const infoBox = document.getElementById('info-box');
   const overlay = document.getElementById('overlay');
@@ -49,17 +51,46 @@ document.getElementById('overlay').addEventListener('click', function() {
 });
 
 
-function changeImage(type, direction) {
-  const imageElement = document.getElementById(type.toLowerCase());
-  let currentIndex = parseInt(imageElement.src.split('/').pop().split('.')[0]);
-  let newIndex = currentIndex + direction;
-  
-  // Prevent out of bounds
-  const maxIndex = 2;  // Update this to the actual number of images available
-  const minIndex = 1;
-  
-  if (newIndex > maxIndex) newIndex = minIndex;
-  if (newIndex < minIndex) newIndex = maxIndex;
-  
-  imageElement.src = `static/tekeningen/${type}/${newIndex}.png`;
-}
+document.addEventListener('DOMContentLoaded', function() {
+  // Laad de JSON-data in
+  fetch('static/images.json')
+    .then(response => response.json())
+    .then(data => {
+      // Functie om de afbeelding te veranderen en de infotekst bij te werken
+      window.changeImage = function(type, direction) {
+        const imageElement = document.getElementById(type.toLowerCase());
+        let currentIndex = parseInt(imageElement.src.split('/').pop().split('.')[0]);
+        let newIndex = currentIndex + direction;
+
+        // Zorg ervoor dat de index binnen de grenzen blijft
+        const maxIndex = aantalAfbeeldingen;  // Aantal afbeeldingen
+        const minIndex = 1;
+
+        if (newIndex > maxIndex) newIndex = minIndex;
+        if (newIndex < minIndex) newIndex = maxIndex;
+
+        // Update de afbeelding
+        imageElement.src = `static/tekeningen/${type}/${newIndex}.png`;
+
+        // Update de groep en auteur tekst
+        const currentImageData = data[newIndex];
+        const groupText = currentImageData.group;
+        const authorText = currentImageData.author;
+
+        // Update de infotekst naast de afbeelding
+        const infoText = `Groep: ${groupText}<br>Kunstenaar: ${authorText}`;
+        const infoContainer = document.getElementById(`${type.toLowerCase()}-info`);
+        infoContainer.innerHTML = infoText;
+      };
+
+      // Initializeer de infotekst voor de eerste afbeelding
+      ['Heads', 'Bodys', 'Legs'].forEach(type => {
+        const firstImageData = data[1];  // Gebruik de eerste afbeelding als default
+        const groupText = firstImageData.group;
+        const authorText = firstImageData.author;
+        const infoText = `Groep: ${groupText}<br>Kunstenaar: ${authorText}`;
+        const infoContainer = document.getElementById(`${type.toLowerCase()}-info`);
+        infoContainer.innerHTML = infoText;
+      });
+    });
+});

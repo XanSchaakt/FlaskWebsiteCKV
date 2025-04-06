@@ -1,10 +1,12 @@
 {
   "1": {
-    "group": "Docenten",
-    "author": "John Doe"
+    "bestandsnaam": "1.png",
+    "group": "Test Afbeeldingen",
+    "author": "Rogier toch? Weet ik veel"
   } ,
   "2": {
-    "group": "K1",
-    "author": "John Pork"
+    "bestandsnaam": "2.png",
+    "group": "Test Afbeeldingen 2",
+    "author": "Noah denk ik. Ben 't vergeten"
   } 
 }
