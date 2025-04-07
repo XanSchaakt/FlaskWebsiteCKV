@@ -11,21 +11,6 @@ window.addEventListener('load', () => {
   }
 });
 
-function preloadImages() {
-  let preloadedImages = [];
-
-  for (const i = 1; i <= aantalAfbeeldingen; i++) {
-      for (const onderdeel of onderdelen) {
-        const img = new Image();
-        const naam = String(i);
-        img.src = `/static/tekeningen/${onderdeel}/${naam}.png`;
-        preloadedImages.push(img);  // Voeg de afbeelding toe aan de array
-      }
-    }
-}
-window.addEventListener('load', preloadImages);
-
-
 document.getElementById('info-toggle').addEventListener('click', function() {
   const infoBox = document.getElementById('info-box');
   const overlay = document.getElementById('overlay');
@@ -76,6 +61,23 @@ document.getElementById('overlay').addEventListener('click', function() {
   }, 300); // Match the duration of the animation
 });
 
+let preloadedImages = [];
+
+function preloadImages() {  
+  for (let i = 1; i <= aantalAfbeeldingen; i++) {
+    for (const onderdeel of onderdelen) {
+      const img = new Image();
+      const naam = String(i);
+      img.src = `/static/tekeningen/${onderdeel}/${naam}.png`;
+      
+      // Store the image in the preloadedImages array, keyed by part type and index
+      if (!preloadedImages[onderdeel]) {
+        preloadedImages[onderdeel] = [];
+      }
+      preloadedImages[onderdeel][i] = img;
+    }
+  }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   // Laad de JSON-data in
@@ -89,21 +91,24 @@ document.addEventListener('DOMContentLoaded', function() {
         let newIndex = currentIndex + direction;
 
         // Zorg ervoor dat de index binnen de grenzen blijft
-        const maxIndex = aantalAfbeeldingen;  // Aantal afbeeldingen
+        const maxIndex = aantalAfbeeldingen;  // Aantal afbeeldingen, update dit naar je daadwerkelijke aantal
         const minIndex = 1;
 
         if (newIndex > maxIndex) newIndex = minIndex;
         if (newIndex < minIndex) newIndex = maxIndex;
 
-        // Update de afbeelding
-        imageElement.src = `static/tekeningen/${type}/${newIndex}.png`;
+        // Get the preloaded image from the array
+        const newImage = preloadedImages[type][newIndex];
+        
+        // Update the image element with the preloaded image
+        imageElement.src = newImage.src;
 
-        // Update de groep en auteur tekst
+        // Update the group and author text
         const currentImageData = data[newIndex];
         const groupText = currentImageData.group;
         const authorText = currentImageData.author;
 
-        // Update de infotekst naast de afbeelding
+        // Update the infotekst naast de afbeelding
         const infoText = `Groep: ${groupText}<br>Kunstenaar: ${authorText}`;
         const infoContainer = document.getElementById(`${type.toLowerCase()}-info`);
         infoContainer.innerHTML = infoText;
@@ -120,3 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 });
+
+// Zorg ervoor dat de preloadImages functie wordt aangeroepen wanneer de pagina is geladen
+window.addEventListener('load', preloadImages);
