@@ -1,4 +1,27 @@
 let aantalAfbeeldingen = 2;
+let onderdelen = ["Heads", "Bodys", "Legs"];
+
+window.addEventListener('load', () => {
+  if (window.innerWidth < 768) { // ongeveer telefoonbreedte
+    document.body.innerHTML = `
+      <div style="padding: 2em; font-size: 1.2em; text-align: center;">
+        Deze website is alleen geschikt voor computerschermen.
+      </div>
+    `;
+  }
+});
+
+function preloadImages() {
+  for (const i = 1; i <= aantalAfbeeldingen; i++) {
+      for (const onderdeel of onderdelen) {
+        const img = new Image();
+        const naam = string(i);
+        img.src = `/static/tekeningen/${onderdeel}/${naam}`;
+      }
+    }
+}
+window.addEventListener('load', preloadImages);
+
 
 document.getElementById('info-toggle').addEventListener('click', function() {
   const infoBox = document.getElementById('info-box');

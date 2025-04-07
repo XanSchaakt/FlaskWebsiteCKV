@@ -88,10 +88,10 @@ header h1 {
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 0px;
   padding: 120px 20px 20px; /* top padding added */
 }
-
 
 .image-container {
   display: flex;
@@ -100,19 +100,22 @@ header h1 {
   gap: 10px;
   padding-right: 100px; /* space on the right */
   position: relative;
+  width: 100%; /* Ensures the container takes up full width */
+  max-width: 1000px; /* Optional: restrict max width if needed */
+  margin-left: 120px; /* Adjusts the container slightly to the left */
 }
 
 .image-container img {
   max-width: 70%;
-  max-height: 400px;
+  max-height: 200px;
 }
 
 .image-container .description {
   flex-grow: 1;
   padding-left: 20px;
   font-size: 16px;
-  max-width: 300px;
   color: #333;
+  min-width: 200px; /* Ensure the description area has a fixed minimum width */
 }
 
 .image-container button.prev {
@@ -122,6 +125,7 @@ header h1 {
 .image-container button.next {
   margin-right: 10px;
 }
+
 
 /* === BUTTON STYLES === */
 button {
