@@ -12,11 +12,14 @@ window.addEventListener('load', () => {
 });
 
 function preloadImages() {
+  let preloadedImages = [];
+
   for (const i = 1; i <= aantalAfbeeldingen; i++) {
       for (const onderdeel of onderdelen) {
         const img = new Image();
         const naam = String(i);
         img.src = `/static/tekeningen/${onderdeel}/${naam}.png`;
+        preloadedImages.push(img);  // Voeg de afbeelding toe aan de array
       }
     }
 }
