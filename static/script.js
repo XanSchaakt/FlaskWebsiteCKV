@@ -15,8 +15,8 @@ function preloadImages() {
   for (const i = 1; i <= aantalAfbeeldingen; i++) {
       for (const onderdeel of onderdelen) {
         const img = new Image();
-        const naam = string(i);
-        img.src = `/static/tekeningen/${onderdeel}/${naam}`;
+        const naam = String(i);
+        img.src = `/static/tekeningen/${onderdeel}/${naam}.png`;
       }
     }
 }
