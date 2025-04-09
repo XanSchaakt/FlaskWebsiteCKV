@@ -1,12 +1,22 @@
 {
     "1": {
         "bestandsnaam": "1.png",
-        "group": "Test Afbeeldingen",
-        "author": "Rogier Check Dit"
+        "group": "werken",
+        "author": "anders"
     },
     "2": {
         "bestandsnaam": "2.png",
-        "group": "Test Afbeeldingen 2",
-        "author": "Noah denk ik. Ben 't vergeten"
+        "group": "afbeelding",
+        "author": "test"
+    },
+    "3": {
+        "bestandsnaam": "3.png",
+        "group": "werken",
+        "author": "anders"
+    },
+    "4": {
+        "bestandsnaam": "4.png",
+        "group": "afbeelding",
+        "author": "test"
     }
 }

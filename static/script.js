@@ -1,4 +1,4 @@
-let aantalAfbeeldingen = 2;
+let aantalAfbeeldingen = 0;
 let onderdelen = ["Heads", "Bodys", "Legs"];
 
 window.addEventListener('load', () => {
