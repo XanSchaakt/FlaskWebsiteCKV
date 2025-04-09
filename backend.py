@@ -49,7 +49,7 @@ for newImage in newImages:
 
     aantalItems += 1
 
-with open('bestand.json', 'w') as f:
+with open('static/images.json', 'w') as f:
     json.dump(data, f, indent=4)
 
 print("New image count: " + str(aantalItems))
