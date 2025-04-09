@@ -15,7 +15,7 @@ groepen = os.listdir(pad)
 
 hoofden = os.listdir(pad + "Heads/")
 aantalItems = len(hoofden)
-origineelAantal = aantalItems
+origineelAantal = aantalItems 
 
 print("Current Image Count: " + str(aantalItems))
 
@@ -25,9 +25,10 @@ newImages = os.listdir(newImagesPath)
 print("Found " + str(len(newImages)) + " new images")
 
 for newImage in newImages:
-    compound = newImage.split('@')
-    author , group = compound
-    group = group[:-4]
+    compound = newImage[:-4].split('@')
+    author, group = compound
+    group = group.split(' ')[0]  # Remove everything after the first space
+
 
     key = str(aantalItems + 1)
     data[key] = {

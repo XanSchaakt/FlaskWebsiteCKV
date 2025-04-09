@@ -1,10 +1,10 @@
-let aantalAfbeeldingen = 0;
+let aantalAfbeeldingen = 43;
 let onderdelen = ["Heads", "Bodys", "Legs"];
 
 window.addEventListener('load', () => {
   if (window.innerWidth < 768) { // ongeveer telefoonbreedte
     document.body.innerHTML = `
-      <div style="padding: 2em; font-size: 1.2em; text-align: center;">
+      <div style="padding: 2em; font-size: 1.2em; text-align: center;"> 
         Deze website is alleen geschikt voor computerschermen.
       </div>
     `;
