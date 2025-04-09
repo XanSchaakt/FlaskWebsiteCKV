@@ -1,6 +1,7 @@
 import os
 import json
 import shutil
+import re
 from PIL import Image
 
 onderdeel = ["Heads" , "Bodys" , "Legs"]
@@ -14,6 +15,7 @@ groepen = os.listdir(pad)
 
 hoofden = os.listdir(pad + "Heads/")
 aantalItems = len(hoofden)
+origineelAantal = aantalItems
 
 print("Current Image Count: " + str(aantalItems))
 
@@ -34,7 +36,7 @@ for newImage in newImages:
         "author": author
     }
 
-    newPath = pad+str(aantalItems+1)+newImage[-4:]
+    newPath = pad+newImage
     shutil.move(newImagesPath+newImage, newPath)
 
     img = Image.open(newPath)
@@ -51,5 +53,25 @@ for newImage in newImages:
 
 with open('static/images.json', 'w') as f:
     json.dump(data, f, indent=4)
+
+
+
+with open("static/script.js", "r", encoding="utf-8") as bestand:
+  inhoud = bestand.read()
+
+def vervanger(match):
+  return f"{match.group(1)}{aantalItems}{match.group(2)}"
+
+nieuwe_inhoud = re.sub(
+  r"(let\s+aantalAfbeeldingen\s*=\s*)\d+(\s*;)",
+  vervanger,
+  inhoud
+)
+
+# Schrijf de gewijzigde inhoud terug naar het bestand
+with open("static/script.js", "w", encoding="utf-8") as bestand:
+  bestand.write(nieuwe_inhoud)
+
+
 
 print("New image count: " + str(aantalItems))
