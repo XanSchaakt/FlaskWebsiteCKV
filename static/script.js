@@ -128,3 +128,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Zorg ervoor dat de preloadImages functie wordt aangeroepen wanneer de pagina is geladen
 window.addEventListener('load', preloadImages);
+
+
+// Helper om van huidige naar targetIndex te springen met changeImage
+function jumpToImage(type, targetIndex) {
+  const imageElement = document.getElementById(type.toLowerCase());
+  let currentIndex = parseInt(imageElement.src.split('/').pop().split('.')[0]);
+
+  // Bepaal hoe ver we moeten springen (richting + afstand)
+  let difference = targetIndex - currentIndex;
+
+  if (difference === 0) return; // niks te doen
+
+  changeImage(type, difference);
+}
+
+// Randomiseer alle onderdelen
+window.randomizeAll = function() {
+  const parts = ['Heads', 'Bodys', 'Legs'];
+  parts.forEach(type => {
+    const randomIndex = Math.floor(Math.random() * aantalAfbeeldingen) + 1;
+    jumpToImage(type, randomIndex);
+  });
+};
